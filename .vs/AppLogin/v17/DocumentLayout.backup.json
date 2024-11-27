@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\dvill\\source\\repos\\AppLogin\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BD037255-81B0-4A87-82E6-9EE970214804}|AppLogin\\AppLogin.csproj|c:\\users\\dvill\\source\\repos\\applogin\\applogin\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD037255-81B0-4A87-82E6-9EE970214804}|AppLogin\\AppLogin.csproj|solutionrelative:applogin\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\dvill\\source\\repos\\AppLogin\\AppLogin\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "AppLogin\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\dvill\\source\\repos\\AppLogin\\AppLogin\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "AppLogin\\Controllers\\UsuarioController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAkwHMAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T03:59:00.345Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

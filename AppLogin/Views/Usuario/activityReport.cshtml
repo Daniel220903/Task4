@@ -1,0 +1,75 @@
+﻿@model List<AppLogin.ViewModels.UserActionVM>;
+@{
+    ViewData["Title"] = "Activity Report";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@foreach (var usuario in Model)
+{
+    <div class="usuario-info">
+        <h3>User: @usuario.NombreCompleto</h3>
+        <p><strong>Email:</strong> @usuario.Correo</p>
+    </div>
+
+    <div class="usuarios-bloqueados">
+        <h4>Users blocked by @usuario.NombreCompleto:</h4>
+        @if (usuario.UsersBlocked != null && usuario.UsersBlocked.Any())
+        {
+            <ul>
+                @foreach (var blockedUser in usuario.UsersBlocked)
+                {
+                    <li>
+                        <strong>Email:</strong> @blockedUser.Correo <br />
+                        <!-- <strong>Block Date:</strong> @blockedUser.CreatedAt.ToString("dd/MM/yyyy HH:mm") -->
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No blocked users.</p>
+        }
+    </div>
+
+    <div class="usuarios-que-bloquearon">
+        <h4>Users who blocked @usuario.NombreCompleto:</h4>
+        @if (usuario.BlockedBy != null && usuario.BlockedBy.Any())
+        {
+            <ul>
+                @foreach (var blocker in usuario.BlockedBy)
+                {
+                    <li>
+                        <strong>Email:</strong> @blocker.Correo <br />
+                        <!-- <strong>Block Date:</strong> @blocker.CreatedAt.ToString("dd/MM/yyyy HH:mm") -->
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No one has blocked this user.</p>
+        }
+    </div>
+}
+<style>
+    .usuario-info {
+        background-color: #f9f9f9;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .usuarios-bloqueados, .usuarios-que-bloquearon {
+        background-color: #e9e9e9;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    h4 {
+        margin-top: 20px;
+    }
+</style>

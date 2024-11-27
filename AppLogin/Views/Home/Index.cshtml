@@ -1,0 +1,123 @@
+﻿@model List<AppLogin.ViewModels.UserActionVM>;
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<h1>Lista de Usuarios</h1>
+<form id="user-actions-form" method="post" asp-controller="Usuario" asp-action="AccionUsuario">
+    <input type="hidden" name="selectedUserIds" id="selected-user-ids">
+    <input type="hidden" name="actionType" id="action-type">
+
+    <div style="margin-bottom: 15px;">
+        <button type="button" id="btn-borrar" class="btn btn-danger" disabled>
+            <i class="fas fa-trash-alt"></i> Delete
+        </button>
+        <button type="button" id="btn-bloquear" class="btn btn-warning" disabled>
+            <i class="fas fa-lock"></i> Block
+        </button>
+        <button type="button" id="btn-desbloquear" class="btn btn-success" disabled>
+            <i class="fas fa-unlock"></i> Unlock
+        </button>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="select-all"></th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Registration Date</th>
+                <th>Last Active</th>
+                <th>Status</th>
+                <th>Activity Report</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" class="user-checkbox" data-user-id="@usuario.IdUsuario"></td>
+                    <td>@usuario.NombreCompleto</td>
+                    <td>@usuario.Correo</td>
+                    <td>@usuario.CreatedAt</td>
+                    <td>@usuario.LastLogged</td>
+                    <td>
+                        @if (usuario.status == 0) {
+                            <h2>Active</h2>
+                        } else {
+                            <h2>Deactivated</h2>
+                        }
+                    </td>
+                    <td>
+                        <a asp-controller="Usuario" asp-action="activityReport" asp-route-id="@usuario.IdUsuario" class="btn btn-primary">
+                            <i class="fa-brands fa-dochub"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectAllCheckbox = document.getElementById('select-all');
+        const userCheckboxes = document.querySelectorAll('.user-checkbox');
+        const btnBorrar = document.getElementById('btn-borrar');
+        const btnBloquear = document.getElementById('btn-bloquear');
+        const btnDesbloquear = document.getElementById('btn-desbloquear');
+        const form = document.getElementById('user-actions-form');
+        const selectedUserIdsInput = document.getElementById('selected-user-ids');
+        const actionTypeInput = document.getElementById('action-type');
+
+        function updateButtons() {
+            const anyChecked = Array.from(userCheckboxes).some(cb => cb.checked);
+            btnBorrar.disabled = !anyChecked;
+            btnBloquear.disabled = !anyChecked;
+            btnDesbloquear.disabled = !anyChecked;
+        }
+
+        selectAllCheckbox.addEventListener('change', function () {
+            userCheckboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+            updateButtons();
+        });
+
+        userCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateButtons);
+        });
+
+        function submitForm(actionType) {
+            const selectedUsers = Array.from(userCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.getAttribute('data-user-id'));
+
+            const payload = {
+                actionType: actionType,
+                selectedUsers: selectedUsers
+            };
+
+            fetch('/Usuario/AccionUsuario', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/Home/Index';
+                } else {
+                    console.error('Error en la solicitud:', response.statusText);
+                }
+            })
+            .catch(error => console.error('Error de red:', error));
+        }
+
+
+        btnBorrar.addEventListener('click', () => submitForm('borrar'));
+        btnBloquear.addEventListener('click', () => submitForm('bloquear'));
+        btnDesbloquear.addEventListener('click', () => submitForm('desbloquear'));
+    });
+</script>
+

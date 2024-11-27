@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/DBLogin/providers/Microsoft.ServiceLinker/linkers/CadenaSQL_832E70DEA5",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/applogindbserver/databases/DBLogin",
+      "type": "mssql.azure",
+      "connectionId": "CadenaSQL"
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/DBLogin/providers/Microsoft.ServiceLinker/linkers/CadenaSQL_832E70DEA5",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/applogindbserver/databases/DBLogin",
+      "type": "mssql.azure",
+      "connectionId": "CadenaSQL"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+﻿@model AppLogin.ViewModels.LoginVM;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logeate</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <div class="row mt-5 justify-content-center">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header">
+                    Log in
+                </div>
+                <div class="card-body">
+                    @{
+                        if (TempData["Mensaje"] != null)
+                        {
+                            <div class="alert alert-success">
+                                @TempData["Mensaje"]
+                            </div>
+                        }
+                    }
+                    <form asp-controller="Acceso" asp-action="Login" method="post">
+                        <input class="form-control mb-3" type="text" placeholder="Email" required asp-for="Correo" />
+                        <input class="form-control mb-3" type="password" placeholder="Password" required asp-for="Clave" />
+                        <div class="d-grid gap-2 mb-3">
+                            <button class="btn btn-primary">Logueate</button>
+                        </div>
+
+                        @if (ViewData["Mensaje"] != null){
+                            <div class="alert alert-danger" role="alert">
+                                @ViewData["Mensaje"]
+                            </div>
+                        }
+                        Don't have an account? <a asp-controller="Acceso" asp-action="Registrarse">Sign up</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2024-11-26T21:53:49.6649213Z"
+    }
+  },
+  "parameters": {
+    "AppLogin20241126151453.resourceGroupName": {
+      "Name": "AppLogin20241126151453.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "AppLogin20241126151453ResourceGroup"
+    },
+    "AppLogin20241126151453.resourceName": {
+      "Name": "AppLogin20241126151453.resourceName",
+      "Type": null,
+      "Value": "AppLogin20241126151453"
+    },
+    "AppLogin20241126151453.resourceGroupLocation": {
+      "Name": "AppLogin20241126151453.resourceGroupLocation",
+      "Type": null,
+      "Value": "canadacentral"
+    },
+    "AppLogin20241126151453.subscriptionId": {
+      "Name": "AppLogin20241126151453.subscriptionId",
+      "Type": "subscription",
+      "Value": "61308be4-63ad-4ee1-a766-10a1bceed521"
+    }
+  }
+}
